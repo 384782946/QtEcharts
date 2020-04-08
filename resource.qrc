@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>html/echarts.min.js</file>
+        <file>html/view1.html</file>
+        <file>html/view2.html</file>
+        <file>html/view3.html</file>
+        <file>html/view4.html</file>
+        <file>html/view5.html</file>
+        <file>html/view6.html</file>
+        <file>html/view7.html</file>
+    </qresource>
+</RCC>
