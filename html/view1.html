@@ -6,7 +6,7 @@
     <script src="./echarts.min.js"></script>
 </head>
 <body>
-    <div id="main" style="width: 700px;height:420px;"></div>
+    <div id="main" style="height:420px;"></div>
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('main'));
 
@@ -45,6 +45,22 @@
         };
 
         myChart.setOption(option);
+        window.onresize = myChart.resize;
+
+        function setDatas(str){
+            var obj = JSON.parse(str);
+
+            console.info(obj)
+
+            option.series[0].data =  obj.series1;
+            option.series[1].data =  obj.series2;
+
+            //option.series[0].name =  obj.legend[0];
+            //option.series[1].name =  obj.legend[1];
+
+
+            myChart.setOption(option);
+        };
     </script>
 </body>
 </html>
