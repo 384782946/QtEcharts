@@ -10,5 +10,7 @@
         <file>html/view7.html</file>
         <file>html/view8.html</file>
         <file>html/china.js</file>
+        <file>html/henan.json</file>
+        <file>html/view9.html</file>
     </qresource>
 </RCC>

@@ -58,6 +58,11 @@
          <string>中国地图</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string> 省地图(Online)</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>

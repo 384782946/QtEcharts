@@ -76,7 +76,8 @@
             ]
         };
 
-        $.get("henan.json", function (nbJson) {
+        //geo数据获取api: http://datav.aliyun.com/tools/atlas/#&lat=33.50475906922609&lng=104.32617187499999&zoom=4
+        $.getJSON("https://geo.datav.aliyun.com/areas/bound/410000_full.json", function (nbJson) {
             echarts.registerMap('henan', nbJson);
             myChart.setOption(option);
         });
