@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>中国地图</title>
+    <!-- 引入 echarts.js -->
+    <script src="./echarts.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 660px;height:420px;"></div>
+    <script type="text/javascript">
+
+        var dataList = [
+            { name: "郑州市", value: 0 },
+            { name: '漯河市', value: randomValue() },
+            { name: '许昌市', value: randomValue() },
+            { name: '驻马店市', value: randomValue() },
+            { name: '信阳市', value: randomValue() }
+        ]
+        var myChart = echarts.init(document.getElementById('main'));
+
+        function randomValue() {
+            return Math.round(Math.random() * 1000);
+        }
+        option = {
+            tooltip: {
+                formatter: function (params, ticket, callback) {
+                    return params.seriesName + '<br />' + params.name + '：' + params.value
+                }//数据格式化
+            },
+            visualMap: {
+                min: 0,
+                max: 1500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高', '低'],//取值范围的文字
+                inRange: {
+                    color: ['#e0ffff', '#006edd']//取值范围的颜色
+                },
+                show: true//图注
+            },
+            geo: {
+                map: 'henan',
+                roam: false,//不开启缩放和平移
+                zoom: 1.23,//视角缩放比例
+                label: {
+                    normal: {
+                        show: true,
+                        fontSize: '10',
+                        color: 'rgba(0,0,0,0.7)'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: 'rgba(0, 0, 0, 0.2)'
+                    },
+                    emphasis: {
+                        areaColor: '#F3B329',//鼠标选择区域颜色
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: '信息量',
+                    type: 'map',
+                    geoIndex: 0,
+                    data: dataList
+                }
+            ]
+        };
+
+        $.get("henan.json", function (nbJson) {
+            echarts.registerMap('henan', nbJson);
+            myChart.setOption(option);
+        });
+        
+        myChart.on('click', function (params) {
+            console.info(params)
+            alert(params.name);
+        });
+    </script>
+</body>
+
+</html>
